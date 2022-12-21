@@ -8,4 +8,10 @@
 
 set -eu
 
-docker container run --name ssh-server --rm --interactive --tty --detach mcr.microsoft.com/devcontainers/base:bullseye
+docker container run \
+    --name ssh-server \
+    --rm \
+    --interactive \
+    --tty \
+    --detach \
+    mcr.microsoft.com/devcontainers/base:bullseye

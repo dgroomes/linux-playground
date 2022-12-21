@@ -70,6 +70,19 @@ Follow these instructions to follow along with the learning journey presented by
    * Start experimenting. When you want to detach from this container and return to the dev container, you need to type
      a special string of characters. Read the detailed note in `ssh-container-attach.sh`. Now, you have a substantial
      two-system Linux development and exploration environment that you can freely explore!
+1. Install OpenSSH server in the container
+   * ```shell
+     apt update && apt install openssh-server
+     ```
+   * Interestingly, the installation procedure automatically created the config file `/etc/ssh/sshd_config` and generated
+     cryptographic keys (RSA, ECDSA and ED25519). I was expecting to do those actions manually.
+
+
+## Notes: SSH
+
+I have to continually learn and re-learn the basics of SSH because I don't use it frequently. I don't do much system
+administration type work. It's tedious to relearn the basics from scratch so I would prefer to encode some knowledge in
+this notes section and in the runnable examples in this codebase. 
 
 
 
@@ -86,11 +99,23 @@ General clean ups, TODOs and things I wish to implement for this project:
     but there's an interesting snag with attaching/detaching from the container. A workaround is detailed in the `ssh-container-attach.sh`
     script.
   * Maybe use password-based authentication? Public/private key would be better.
-  * Debian (at least the Docker container) is pre-installed with `ssh - OpenSSH remote login client`. How should I install
-  SSH server software?  
-* [ ] Install a package, or series of packages using the package manager (what is it apt-get? I always get them
-  confused)
+  * DONE (install `openssh-server` with `apt`) Debian (at least the Docker container) is pre-installed with `ssh - OpenSSH remote login client`. How should I install
+    SSH server software?  
+* [x] DONE (I installed the OpenSSH server) Install a package, or series of packages using the package manager(what is it apt-get? I always get them
+  confused). UPDATE: Ok I read some docs and I was interesting in using tasksel or aptitude because are the highest level
+  interactive tools for package management but they were not installed on the system. This was a little surprising. I would
+  be curious to know more about these tools; are they effectively never used by the community? I'll just stick to `apt`
+  which is for interactive usage. Contrast this with `apt-get` which is for scripts. So I tried `apt update` to make sure
+  my copy of the list of packages and then `apt search openssh` which revealed many things, including
+
+  > openssh-server/stable 1:8.4p1-5+deb11u1 arm64
+  secure shell (SSH) server, for secure access from remote machines
+
+  
+
 
 ## Reference
 
 * [Debian Wiki: *SSH*](https://wiki.debian.org/SSH)
+* [Debian Manual: *The Debian GNU/Linux FAQ* ... *Chapter 8. The Debian package management tools*](https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html)
+* [Debian Manual: *Debian Reference* ... *Chapter 2. Debian package management*](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html)
