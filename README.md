@@ -70,19 +70,13 @@ Follow these instructions to follow along with the learning journey presented by
    * Start experimenting. When you want to detach from this container and return to the dev container, you need to type
      a special string of characters. Read the detailed note in `ssh-container-attach.sh`. Now, you have a substantial
      two-system Linux development and exploration environment that you can freely explore!
-1. Install OpenSSH server in the container
-   * ```shell
-     apt update && apt install openssh-server
-     ```
-   * Interestingly, the installation procedure automatically created the config file `/etc/ssh/sshd_config` and generated
-     cryptographic keys (RSA, ECDSA and ED25519). I was expecting to do those actions manually.
 
 
 ## Notes: SSH
 
 I have to continually learn and re-learn the basics of SSH because I don't use it frequently. I don't do much system
 administration type work. It's tedious to relearn the basics from scratch so I would prefer to encode some knowledge in
-this notes section and in the runnable examples in this codebase. 
+this notes section and in the runnable examples in this codebase.
 
 
 
