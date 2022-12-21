@@ -8,4 +8,17 @@
 FROM debian:bullseye
 
 RUN apt-get update && \
-    apt-get --yes install vim openssh-server
+    apt-get --yes install vim less openssh-server
+
+# Port 22 is the conventional port used for SSH.
+EXPOSE 22
+
+# I might go back on this decision, but for now I think it's best to try to use and explore Linux through a non-root
+# user.
+RUN useradd --create-home myuser
+# Note: I can't get a straight answer on this, but we need some kind of "starter password" on this user so we can
+# bootstrap the SSH authorized public key and then later change the password.
+RUN echo "myuser:myuser" | chpasswd
+
+# Set the default user for running containers
+USER myuser

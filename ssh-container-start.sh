@@ -19,4 +19,5 @@ docker container run \
     --interactive \
     --tty \
     --detach \
+    --publish 2345:22 \
     $IMAGE
