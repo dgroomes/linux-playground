@@ -1,15 +1,6 @@
 # linux-playground
 
-NOT YET FULLY IMPLEMENTED
-
 📚 Learning and exploring Linux.
-
----
-**NOTE**:
-
-This was developed on macOS and for my own personal use.
-
----
 
 
 ## Overview
@@ -27,6 +18,13 @@ representative.
 There are some miscellaneous things I'd like to learn about Linux (or even more broadly Unix-based systems and computing
 tools) like SSH (again, not a Linux-specific thing), systemd, file permissions, Unix domain sockets, and more.
 
+---
+**NOTE**:
+
+This was developed on macOS and for my own personal use.
+
+---
+
 
 ## Instructions
 
@@ -35,11 +33,11 @@ Follow these instructions to follow along with the learning journey presented by
 1. Start Docker
    * You should have Docker Desktop (or an alternative, like [Colima](https://github.com/abiosoft/colima)) installed and
      running.
-1. Open this project in VS Code
-1. Attach VS Code to the dev container
+2. Open this project in VS Code
+3. Attach VS Code to the dev container
    * VS Code will prompt you with a notification to reopen the project in a dev container. Click the "Reopen in Container"
      button.
-1. Show the Debian version
+4. Show the Debian version
    * Issue the following command in the VS Code integrated terminal.
    * ```shell
      lsb_release -a
@@ -58,25 +56,25 @@ Follow these instructions to follow along with the learning journey presented by
      vscode ➜ /workspaces/linux-playground $ cat /etc/debian_version 
      11.6
      ```
-1. Start a Docker container
+5. Start a Docker container
    * ```shell
      ./ssh-container-start.sh
      ```
    * This is a "Docker-in-Docker" scenario. We are going to use this container to explore SSH.
-1. Check the status of the container
+6. Check the status of the container
    * ```shell
      docker container ls
      ```   
    * This is a command you will use frequently to see what containers are up, what ports are forwarded, what are the IDs
      of the containers, etc. You might know about the older command that does the same thing: `docker ps`.
-1. Attach to the container
+7. Attach to the container
    * ```shell
      ./ssh-container-attach.sh
      ```
    * Start experimenting. When you want to detach from this container and return to the dev container, you need to type
      a special string of characters. Read the detailed note in `ssh-container-attach.sh`. Now, you have a substantial
      two-system Linux development and exploration environment that you can freely explore!
-1. Restart the SSH service in the container
+8. Restart the SSH service in the container
    * For some reason, the SSH service needs to be restarted. If I don't restart it then I have trouble ssh'ing into the
      container and I get a `kex_exchange_identification: read: Connection reset by peer` error. Use the following
      command to start an interactive Bash session in the container.
@@ -87,13 +85,13 @@ Follow these instructions to follow along with the learning journey presented by
    * ```shell
      service ssh restart && exit
      ```
-1. SSH into the container
+9. SSH into the container
    * ```shell
      ssh -o StrictHostKeyChecking=accept-new -p 2345 myuser@localhost
      ```
    * It will prompt you for a password. Refer to the `Dockerfile` and to the note about the "bootstrap" design problem.
      Think about this design problem. Are the ergonomics of Dockerfiles awkward? Yes, in my opinion, they are. This is,
-     in part, just the nature of Unix/Linux, the overall ecosystem, and distributed computing.
+     in part, just the nature of Unix/Linux, the overall ecosystem, distributed computing, and security schemes.
    * Success, you are in a shell session in the container thanks to SSH!
 
 
@@ -102,7 +100,6 @@ Follow these instructions to follow along with the learning journey presented by
 I have to continually learn and re-learn the basics of SSH because I don't use it frequently. I don't do much system
 administration type work. It's tedious to relearn the basics from scratch so I would prefer to encode some knowledge in
 this notes section and in the runnable examples in this codebase.
-
 
 
 ## Wish List
@@ -130,8 +127,6 @@ General clean ups, TODOs and things I wish to implement for this project:
 
   > openssh-server/stable 1:8.4p1-5+deb11u1 arm64
   secure shell (SSH) server, for secure access from remote machines
-
-  
 
 
 ## Reference
